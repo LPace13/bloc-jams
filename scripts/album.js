@@ -26,6 +26,20 @@ var albumMarconi = {
         {title: 'Wrong phone number', duration: '2:15' }
     ]
 };
+var albumTameImpala = {
+    title: 'Currents',
+    artist: 'Tame Impala',
+    label: 'Arista',
+    year: '2015',
+    albumArtURL: 'assets/images/album_covers/02.png',
+    songs: [ 
+        {title: 'I\'m A Man', duration: '4:26' },
+        {title: 'Let It Happen', duration: '3:14' },
+        {title: 'New Person, Same Old Mistakes', duration: '5:01' },
+        {title: 'Eventually', duration: '3:21' },
+        {title: 'Gossip', duration: '2:15' }
+    ]
+};
 
 var createSongRow = function (songNumber, songName, songLength) {
     var template = 
@@ -39,13 +53,13 @@ var createSongRow = function (songNumber, songName, songLength) {
         return template;
     };
 
-var setCurrentAlbum = function (album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
     
+var setCurrentAlbum = function (album) {
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -60,4 +74,17 @@ var setCurrentAlbum = function (album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+
+     var albums = [albumPicasso, albumMarconi, albumTameImpala];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if(index = albums.length) {
+            index = 0;
+        }
+     });
  };
+    
+
+
