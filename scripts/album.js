@@ -162,7 +162,7 @@ for (var i = 0; i <songRows.length; i++) {
 }
      var albums = [albumPicasso, albumMarconi, albumTameImpala];
      var index = 1;
-     albumImage.addEventListener("click", function(event) {
+     $albumImage.addEventListener("click", function(event) {
         setCurrentAlbum(albums[index]);
         index++;
         if(index === albums.length) {
