@@ -1,3 +1,6 @@
+var currentAlbum = null;
+var currentlyPlayingSongNumber = null;
+var currentSongFromAlbum = null;
 var createSongRow = function (songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -19,9 +22,6 @@ var createSongRow = function (songNumber, songName, songLength) {
 
     var clickHandler = function() {
         var songNumber = parseInt($(this).attr('data-song-number'));
-        var currentAlbum = null;
-        var currentlyPlayingSongNumber = null;
-        var currentSongFromAlbum = null;
 
         if (currentlyPlayingSongNumber !== null) {
             // Revert to song number for currently playing song because user started playing new song.
@@ -41,15 +41,11 @@ var createSongRow = function (songNumber, songName, songLength) {
             currentlyPlayingSongNumber = null;
             currentSongFromAlbum = null;
         }
-        console.log(currentSongFromAlbumAlbum.songs);
     };
 
     var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-        var currentAlbum = null;
-        var currentlyPlayingSongNumber = null;
-        var currentSongFromAlbum = null;
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
