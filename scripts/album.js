@@ -15,9 +15,8 @@ var createSongRow = function (songNumber, songName, songLength) {
     + '<td class="song-item-title">' + songName + '</td>'
     + '<td class="song-item-duration">' + songLength + '</td>'
     '</tr>';
-
     var $row = $(template);
-
+    
     var updatePlayerBarSong = function() {
 
         $('.currently-playing .song-name').text(currentSongFromAlbum.title);
