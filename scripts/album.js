@@ -1,11 +1,15 @@
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null; 
-<<<<<<< HEAD
+var currentSoundFile = null;
+var currentVolume = 80;
 var setSong = function(songNumber) {
+    if (currentSoundFile) {
+        currentSoundFile.stop();
+    }
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-=======
+    
 var currentSoundFile = null;
 var currentVolume = 80;
 var setSong = function(songNumber) {
@@ -24,13 +28,11 @@ var setVolume = function(volume) {
     if (currentSoundFile) {
         currentSoundFile.setVolume(volume);
     }
->>>>>>> checkpoint-20
 };
 var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
-<<<<<<< HEAD
-=======
+
 var updatePlayerBarSong = function() {
 
         $('.currently-playing .song-name').text(currentSongFromAlbum.title);
@@ -39,7 +41,7 @@ var updatePlayerBarSong = function() {
         $('.main-controls .play-pause').html(playerBarPauseButton);
 
     };
->>>>>>> checkpoint-20
+
 var createSongRow = function (songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -48,7 +50,6 @@ var createSongRow = function (songNumber, songName, songLength) {
     + '<td class="song-item-duration">' + songLength + '</td>'
     '</tr>';
     var $row = $(template);
-<<<<<<< HEAD
     
     var updatePlayerBarSong = function() {
 
@@ -58,8 +59,6 @@ var createSongRow = function (songNumber, songName, songLength) {
         $('.main-controls .play-pause').html(playerBarPauseButton);
 
     };
-=======
->>>>>>> checkpoint-20
 
     var clickHandler = function() {
         var songNumber = parseInt($(this).attr('data-song-number'));
@@ -73,10 +72,7 @@ var createSongRow = function (songNumber, songName, songLength) {
             // Switch from Play -> Pause button to indicate new song is playing.
             $(this).html(pauseButtonTemplate);
             setSong(songNumber);
-<<<<<<< HEAD
-=======
             currentSoundFile.play();
->>>>>>> checkpoint-20
             currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
             updatePlayerBarSong();
         }
@@ -88,13 +84,25 @@ var createSongRow = function (songNumber, songName, songLength) {
         } else {
             $(this).html(playButtonTemplate);
             $('.main-controls .play-pause').html(playerBarPlayButton);
-<<<<<<< HEAD
             setSong(null);
             currentSongFromAlbum = null;
-=======
             currentSoundFile.pause();
->>>>>>> checkpoint-20
+            currentSoundFile.play();
+            currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+            updatePlayerBarSong();
+            
+        } else if (currentlyPlayingSongNumber === songNumber) {
+            if (currentSoundFile.isPaused()) {
+                $(this).html(pauseButtonTemplate);
+                $('.main-controls .play-pause').html(playerBarPauseButton);
+                currentSoundFile.play();
+            } else {
+                $(this).html(playButtonTemplate);
+                $('.main-controls .play-pause').html(playerBarPlayButton);
+                currentSoundFile.pause();
+            }
         }
+        
     };
 
     var onHover = function(event) {
@@ -157,10 +165,8 @@ var nextSong = function() {
 
     // Set a new current song
     setSong(currentSongIndex + 1);
-<<<<<<< HEAD
-=======
     currentSoundFile.play();
->>>>>>> checkpoint-20
+    currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
     // Update the Player Bar information
@@ -187,10 +193,8 @@ var previousSong = function() {
 
     // Set a new current song
     setSong(currentSongIndex + 1);
-<<<<<<< HEAD
-=======
     currentSoundFile.play();
->>>>>>> checkpoint-20
+    currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
     // Update the Player Bar information
@@ -218,3 +222,5 @@ $(document).ready(function() {
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
 });    
+});  
+
